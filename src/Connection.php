@@ -9,6 +9,12 @@ class Connection extends DibiConnection
 {
     private $tables;
 
+    public function __construct(array $config, string $name = null)
+    {
+        $config['password'] = (string) $config['password'];
+        parent::__construct($config, $name);
+    }
+
     public function __sleep()
     {
         return [];
