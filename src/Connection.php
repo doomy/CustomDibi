@@ -9,7 +9,7 @@ class Connection extends DibiConnection
 {
     private $tables;
 
-    public function __construct(array $config, string $name = null)
+    public function __construct(array $config, ?string $name = null)
     {
         $config['password'] = (string) $config['password'];
         parent::__construct($config, $name);
@@ -36,7 +36,7 @@ class Connection extends DibiConnection
     private function initTables() {
         $tables = [];
         $schema = $this->getConfig('database');
-        $res = $this->query("SELECT table_name FROM information_schema.tables WHERE table_schema = '$schema'");
+        $res = $this->query("SELECT TABLE_NAME AS table_name FROM information_schema.tables WHERE table_schema = '$schema'");
         foreach($res->fetchAll() as $row) {
             $tables[] = $row['table_name'];
         }
