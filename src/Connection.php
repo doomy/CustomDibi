@@ -9,6 +9,10 @@ class Connection extends DibiConnection
 {
     private $tables;
 
+    /**
+     * @param array       $config
+     * @param string|null $name
+     */
     public function __construct(array $config, ?string $name = null)
     {
         $config['password'] = (string) $config['password'];
